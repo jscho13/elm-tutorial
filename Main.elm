@@ -1,10 +1,8 @@
 module Main exposing (..)
 
-import Html exposing (Html, button, div, text, program)
-import Html.Events exposing (onClick)
-
-
--- MODEL
+import Html exposing (Html, div, text, program)
+import Mouse
+import Keyboard
 
 
 type alias Model =
@@ -16,48 +14,33 @@ init =
     ( 0, Cmd.none )
 
 
-
--- MESSAGES
-
-
 type Msg
-    = Increment Int
-
-
-
--- VIEW
+    = MouseMsg Mouse.Position
+    | KeyMsg Keyboard.KeyCode
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ button [ onClick (Increment 2) ] [ text "+" ]
-        , text (toString model)
-        ]
-
-
-
--- UPDATE
+        [ text (toString model) ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increment howMuch ->
-            ( model + howMuch, Cmd.none )
+        MouseMsg position ->
+            ( model + 1, Cmd.none )
 
-
-
--- SUBSCRIPTIONS
+        KeyMsg code ->
+            ( model + 1, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
-
-
-
--- MAIN
+    Sub.batch
+        [ Mouse.clicks MouseMsg
+        , Keyboard.downs KeyMsg
+        ]
 
 
 main : Program Never Model Msg
