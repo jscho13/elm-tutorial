@@ -1,0 +1,14 @@
+{
+  "name": "elm-tutorial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:jscho13/elm-tutorial.git",
+    "type": "git"
+  },
+  "author": "Joseph Cho <jscho13@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "json-server": "0.9.5"
+  }
+}
