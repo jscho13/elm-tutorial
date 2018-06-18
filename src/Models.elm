@@ -2,13 +2,13 @@ module Models exposing (..)
 
 
 type alias Model =
-    { players : List Player
+    { players : WebData (List Player)
     }
 
 
 initialModel : Model
 initialModel =
-    { players = [ Player "1" "Sam" 1 ]
+    { players = RemoteData.Loading
     }
 
 
